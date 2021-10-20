@@ -1,23 +1,23 @@
 import styled from 'styled-components'
 
- export const MovieCards = styled.div`
+export const MovieHolder = styled.div`
+display: flex;
+justify-content: space-between;
+`
+
+export const MovieCards = styled.div`
   position: relative;
   top: 50px;
   transition: transform .2s;
   cursor: pointer;
   border-radius: 5px;
   margin: 40px 0;
-  
-  
-
-
   &:hover{
       transform: scale(1.1);
       border: 2px solid #fff;
      
   }
-
-  img{
+ img{
       object-fit: cover;
       width: 300px;
       height: 400px;

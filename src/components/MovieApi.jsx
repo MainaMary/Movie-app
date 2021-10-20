@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import styled from 'styled-components'
 import axios from "axios";
 import MoviesList from "./MovieList";
 import MovieTitle from "./MovieTitle";
+import Toggle from "./Toggle"
 import Search from "./Search";
 import AddFavourites from "./AddFavourites";
 import { SearchWrapper } from "./MoviesList.styled";
@@ -23,9 +25,6 @@ function MovieApi() {
     });
   };
 
-  
-
-
   useEffect(() => {
     getMoviesList(searchMovies);
   }, [searchMovies]);
@@ -40,45 +39,51 @@ function MovieApi() {
     setFavourite(newFavouriteMovies);
   };
   return (
-    <div className="container">
-      <div className="Navbar">
+    <Container>
+      <Navbar>
         <MovieTitle heading="Movies" />
-      </div>
+        <Toggle />
+      </Navbar>
       <SearchWrapper>
         <Search search={searchMovies} handleChange={handleChange} />
       </SearchWrapper>
 
       <h2>{`Results search for ${searchMovies}`}</h2>
-      <div
-       
-      >
-
+      <MoviesListWrapper>
         <MoviesList
           movies={movies}
           favouriteComponent={AddFavourites}
           handleClick={handleClick}
         />
-      </div>
+      </MoviesListWrapper>
 
-      <div className="Navbar">
+      <FavouritesCont>
         <MovieTitle heading="Add Favourite Movies" />
-      </div>
-      <div
-        style={{
-        
-      
-          backgroundColor: "blue",
-          
-        }}
-      >
+      </FavouritesCont>
+      <MoviesListWrapper>
         <MoviesList
           movies={favouriteMovies}
           favouriteComponent={AddFavourites}
           handleClick={handleClick}
         />
-      </div>
-    </div>
+      </MoviesListWrapper>
+    </Container>
   );
 }
 
 export default MovieApi;
+
+export const Navbar = styled.div`
+display: flex;
+justify-content: space-between;
+align-items: center;
+`
+export const FavouritesCont = styled.div``
+export const MoviesListWrapper= styled.div`
+display: flex;
+justify-content: space-between;
+width: 100%;
+`
+export const Container = styled.div`
+padding: 0 40px;
+`

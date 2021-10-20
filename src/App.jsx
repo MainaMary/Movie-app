@@ -1,11 +1,15 @@
-import MovieApi from './components/MovieApi';
-import './App.css';
+import MovieApi from "./components/MovieApi";
+import "./App.css";
+import { ThemeProvider } from "styled-components";
 
 function App() {
   return (
-    <div className="App" >
-      <MovieApi/>
-    </div>
+    <ThemeProvider theme={{}}>
+      
+      <div className="App">
+        <MovieApi />
+      </div>
+    </ThemeProvider>
   );
 }
 
