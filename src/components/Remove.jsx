@@ -4,15 +4,15 @@ import { Favourites, Icon } from "./MoviesList.styled";
 export function ImagesHover() {
   return (
     <Icon>
-      <i className="fas fa-heart"></i>
+      <i class="fas fa-times"></i>
     </Icon>
   );
 }
 
-function AddFavourites() {
+function Remove() {
   return (
     <Favourites>
-      <p>Add to favourites</p>
+      <p>Remove from favourites</p>
       <div>
         <ImagesHover />
       </div>
@@ -20,4 +20,4 @@ function AddFavourites() {
   );
 }
 
-export default AddFavourites;
+export default Remove;

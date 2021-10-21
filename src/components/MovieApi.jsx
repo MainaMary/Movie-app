@@ -6,12 +6,14 @@ import MovieTitle from "./MovieTitle";
 import Toggle from "./Toggle"
 import Search from "./Search";
 import AddFavourites from "./AddFavourites";
+import Remove from "./Remove"
 import { SearchWrapper } from "./MoviesList.styled";
 
 function MovieApi() {
   const [movies, setMovies] = useState([]);
   const [searchMovies, setSearchMovies] = useState("");
   const [favouriteMovies, setFavourite] = useState([]);
+  const [removeCard, setRemove] = useState([]);
   const getMoviesList = (searchMovies) => {
     const apiKey = "b0312ded ";
     axios({
@@ -19,14 +21,17 @@ function MovieApi() {
       url: `http://www.omdbapi.com/?s=${searchMovies}&apikey=${apiKey}&`,
     }).then((response) => {
       const data = response.data.Search;
+      console.log(data);
       if (data) {
         setMovies(data);
       }
     });
+    
   };
 
   useEffect(() => {
     getMoviesList(searchMovies);
+    
   }, [searchMovies]);
 
   const handleChange = (e) => {
@@ -38,6 +43,12 @@ function MovieApi() {
     const newFavouriteMovies = [...favouriteMovies, movie];
     setFavourite(newFavouriteMovies);
   };
+
+  const handleRemove = (movie) =>{
+    const removeMovies = favouriteMovies.filter(removeItem=>removeItem.imdbID !== movie.imdbID)
+    setFavourite(removeMovies)
+    console.log(removeMovies)
+  }
   return (
     <Container>
       <Navbar>
@@ -48,13 +59,15 @@ function MovieApi() {
         <Search search={searchMovies} handleChange={handleChange} />
       </SearchWrapper>
 
-      <h2>{`Results search for ${searchMovies}`}</h2>
+     
       <MoviesListWrapper>
         <MoviesList
+        search={searchMovies}
           movies={movies}
           favouriteComponent={AddFavourites}
           handleClick={handleClick}
         />
+        
       </MoviesListWrapper>
 
       <FavouritesCont>
@@ -63,8 +76,9 @@ function MovieApi() {
       <MoviesListWrapper>
         <MoviesList
           movies={favouriteMovies}
-          favouriteComponent={AddFavourites}
-          handleClick={handleClick}
+           favouriteComponent={Remove}
+           handleClick={handleRemove}
+          
         />
       </MoviesListWrapper>
     </Container>
