@@ -14,11 +14,12 @@ function MovieApi() {
   const [searchMovies, setSearchMovies] = useState("");
   const [favouriteMovies, setFavourite] = useState([]);
   const [removeCard, setRemove] = useState([]);
+
   const getMoviesList = (searchMovies) => {
     const apiKey = "b0312ded ";
     axios({
       method: "get",
-      url: `http://www.omdbapi.com/?s=${searchMovies}&apikey=${apiKey}&`,
+      url: `https://www.omdbapi.com/?s=${searchMovies}&apikey=${apiKey}&`,
     }).then((response) => {
       const data = response.data.Search;
       console.log(data);
@@ -95,7 +96,6 @@ function MovieApi() {
           movies={favouriteMovies}
            favouriteComponent={Remove}
            handleClick={handleRemove}
-          
         />
       </MoviesListWrapper>
     </Container>

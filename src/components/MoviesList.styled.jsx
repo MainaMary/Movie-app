@@ -15,16 +15,12 @@ export const MovieCards = styled.div`
   &:hover{
       transform: scale(1.1);
       border: 2px solid #fff;
-     
   }
  img{
       object-fit: cover;
       width: 300px;
       height: 400px;
-     
-
   }
-
  `
  export const Overlay= styled.div`
 position: absolute;
@@ -63,8 +59,16 @@ export const Favourites= styled.div`
  }
 `
 
- export const MovieItems = styled.div`
-;`
+export const MovieItems = styled.div`
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    
+    & > ${MovieHolder} {
+        grid-column: span 3;
+    }
+`
 
 //Search wrapper
  export const SearchWrapper = styled.div`
