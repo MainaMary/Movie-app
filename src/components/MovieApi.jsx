@@ -34,14 +34,31 @@ function MovieApi() {
     
   }, [searchMovies]);
 
+  //get the items in Local storage when the page loads
+  const getItems = () =>{
+    const movieData = JSON.parse(localStorage.getItem('storage-key'))
+    return movieData 
+  }
+  useEffect(()=>{
+    const moviesList = getItems()
+    setFavourite(moviesList)
+  }, [])
+
+  //Saving movies into localstorage
+
+  function setLocalStorage(items) {
+    localStorage.setItem('storage-key', JSON.stringify(items));
+  }
   const handleChange = (e) => {
     const { value } = e.target;
     setSearchMovies(value);
+    
   };
 
   const handleClick = (movie) => {
     const newFavouriteMovies = [...favouriteMovies, movie];
     setFavourite(newFavouriteMovies);
+    setLocalStorage(newFavouriteMovies)
   };
 
   const handleRemove = (movie) =>{
