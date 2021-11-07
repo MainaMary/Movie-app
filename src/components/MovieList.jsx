@@ -5,6 +5,7 @@ import { MovieItems, MovieCards, Overlay, MovieHolder } from "./MoviesList.style
 function MovieList(props) {
   const FavouriteMovies = props.favouriteComponent;
   
+  
   return (
     <MovieItems>
       {props.movies?.map((movie, index) => {

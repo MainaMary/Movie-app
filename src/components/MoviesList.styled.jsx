@@ -61,12 +61,18 @@ export const Favourites= styled.div`
 
 export const MovieItems = styled.div`
     display: grid;
-    gap: 12px;
+    grid-gap: 20px;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: auto;
-    
+   
+    @media screen(max-width: 768px){
+        & > ${MovieHolder} {
+            grid-column: span 12;
+        }
+    }
     & > ${MovieHolder} {
-        grid-column: span 3;
+        margin: auto;   
+        grid-column: span 4;
     }
 `
 
