@@ -13,6 +13,7 @@ function MovieApi() {
   const [movies, setMovies] = useState([]);
   const [searchMovies, setSearchMovies] = useState("");
   const [favouriteMovies, setFavourite] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [removeCard, setRemove] = useState([]);
 
   const getMoviesList = (searchMovies) => {

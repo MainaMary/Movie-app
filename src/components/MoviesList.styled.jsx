@@ -65,14 +65,16 @@ export const MovieItems = styled.div`
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: auto;
    
+    
+    & > ${MovieHolder} {
+        margin: auto;   
+        grid-column: span 4;
+    }
+
     @media screen(max-width: 768px){
         & > ${MovieHolder} {
             grid-column: span 12;
         }
-    }
-    & > ${MovieHolder} {
-        margin: auto;   
-        grid-column: span 4;
     }
 `
 
