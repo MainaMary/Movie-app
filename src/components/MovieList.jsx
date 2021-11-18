@@ -10,8 +10,8 @@ function MovieList(props) {
     <MovieItems>
       {props.movies?.map((movie, index) => {
         return (
-          <MovieHolder>
-            <MovieCards key={index}>
+          <MovieHolder key={index}>
+            <MovieCards >
               <img src={movie.Poster} alt={movie.Title}/>
               <Overlay onClick={() => props.handleClick(movie)}>
                 <FavouriteMovies />

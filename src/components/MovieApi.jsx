@@ -16,39 +16,41 @@ function MovieApi() {
   // eslint-disable-next-line no-unused-vars
   const [removeCard, setRemove] = useState([]);
 
-  const getMoviesList = (searchMovies) => {
-    const apiKey = "b0312ded ";
-    axios({
-      method: "get",
-      url: `https://www.omdbapi.com/?s=${searchMovies}&apikey=${apiKey}&`,
-    }).then((response) => {
-      const data = response.data.Search;
-      console.log(data);
-      if (data) {
-        setMovies(data);
-      }
-    });
-    
-  };
+  
 
   useEffect(() => {
+    const getMoviesList = (searchMovies) => {
+      const apiKey = "b0312ded ";
+      axios({
+        method: "get",
+        url: `https://www.omdbapi.com/?s=${searchMovies}&apikey=${apiKey}&`,
+      }).then((response) => {
+        const data = response.data.Search;
+       
+        if (data) {
+          setMovies(data);
+        }
+      });
+      
+    };
+
     getMoviesList(searchMovies);
     
   }, [searchMovies]);
 
   //get the items in Local storage when the page loads
-  const getItems = () =>{
-    const movieData = JSON.parse(localStorage.getItem('storage-key'))
-    return movieData 
-  }
+  
   useEffect(()=>{
-    const moviesList = getItems()
-    setFavourite(moviesList)
+    const savedItems=localStorage.getItem('storage-key') ? JSON.parse(localStorage.getItem('storage-key')): []
+    
+    setFavourite(savedItems)
   }, [])
 
   //Saving movies into localstorage
 
+  
   function setLocalStorage(items) {
+ 
     localStorage.setItem('storage-key', JSON.stringify(items));
   }
   const handleChange = (e) => {
@@ -58,9 +60,18 @@ function MovieApi() {
   };
 
   const handleClick = (movie) => {
-    const newFavouriteMovies = [...favouriteMovies, movie];
+    console.log(favouriteMovies)
+    const found = favouriteMovies.find(item => item.id === movie)
+    if(found){
+ console.log('movie already added to the list')
+    }else{
+      const newFavouriteMovies = [...favouriteMovies, movie];
+   
     setFavourite(newFavouriteMovies);
+
     setLocalStorage(newFavouriteMovies)
+    }
+    
   };
 
   const handleRemove = (movie) =>{

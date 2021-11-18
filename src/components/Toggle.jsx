@@ -14,9 +14,12 @@ function Toggle({ children }) {
     setTheme((prevMode) => !prevMode);
   };
   return (
+
+    
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       {children}
+      
       <IconContext.Provider value={{ fontSize: "90px" }}>
         <IconWrapper onClick={handleToggle}>
           {lightTheme ? <BsFillMoonFill/> : <BsBrightnessHighFill />}

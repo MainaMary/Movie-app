@@ -4,7 +4,7 @@ import { Favourites, Icon } from "./MoviesList.styled";
 export function ImagesHover() {
   return (
     <Icon>
-      <i class="fas fa-times"></i>
+      <i className="fas fa-times"></i>
     </Icon>
   );
 }
